@@ -8,15 +8,13 @@ const userService = require('../service/userService');
 router.post('/', async (req, res) => {
   try {
     const params = {
-      reviewId: req.body.reviewId,
-      bookingId: req.body.bookingId,
       userid: req.body.userid,
       password: req.body.password,
       name: req.body.name,
       gender: req.body.gender,
-      auth: req.body.auth,
+      auth: req.body.auth || 'customer',
       mobile: req.body.mobile,
-      active: req.body.active,
+      active: req.body.active || false,
     };
     logger.info(`(user.reg.params) ${JSON.stringify(params)}`);
 
@@ -58,6 +56,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+/*
 // 상세정보 조회
 router.get('/:id', async (req, res) => {
   try {
@@ -119,5 +118,6 @@ router.delete('/:id', async (req, res) => {
     res.status(500).json({ err: err.toString() });
   }
 });
+*/
 
 module.exports = router;

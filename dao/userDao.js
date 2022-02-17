@@ -33,7 +33,7 @@ const dao = {
     }
 
     // order by 정렬 조건
-    setQuery.order = [['id']];
+    setQuery.order = [['id', 'DESC']];
 
     return new Promise((resolve, reject) => {
       User.findAndCountAll({
