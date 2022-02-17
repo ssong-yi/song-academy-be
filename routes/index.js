@@ -1,4 +1,5 @@
 const express = require('express');
+const userRouter = require('./user');
 
 const router = express.Router();
 
@@ -6,5 +7,8 @@ const router = express.Router();
 router.get('/', (req, res, next) => {
   res.render('index', { title: 'Express' });
 });
+
+// user
+router.use('/users', userRouter);
 
 module.exports = router;
