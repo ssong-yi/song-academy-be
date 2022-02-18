@@ -4,7 +4,7 @@ module.exports = class Lesson extends Sequelize.Model {
   static init(sequelize) {
     return super.init({
       name: {
-        type: Sequelize.STRING(50),
+        type: Sequelize.STRING(200),
         allowNull: false,
       },
       price: {
@@ -13,14 +13,14 @@ module.exports = class Lesson extends Sequelize.Model {
       description: {
         type: Sequelize.TEXT,
       },
-      max_user_count: {
+      maxUserCount: {
         type: Sequelize.INTEGER,
       },
       time: {
         type: Sequelize.INTEGER,
       },
       images: {
-        type: Sequelize.STRING,
+        type: Sequelize.ARRAY(Sequelize.STRING),
       },
     }, {
       sequelize,

@@ -11,7 +11,7 @@ router.post('/', async (req, res) => {
       name: req.body.name,
       price: req.body.price,
       description: req.body.description,
-      max_user_count: req.body.max_user_count,
+      maxUserCount: req.body.maxUserCount,
       time: req.body.time,
       images: req.body.images,
     };
@@ -80,7 +80,7 @@ router.put('/:id', async (req, res) => {
       name: req.body.name,
       price: req.body.price,
       description: req.body.description,
-      max_user_count: req.body.max_user_count,
+      maxUserCount: req.body.maxUserCount,
       time: req.body.time,
       images: req.body.images,
     };
