@@ -1,5 +1,6 @@
 const express = require('express');
 const userRouter = require('./user');
+const lessonRouter = require('./lesson');
 
 const router = express.Router();
 
@@ -10,5 +11,8 @@ router.get('/', (req, res, next) => {
 
 // user
 router.use('/users', userRouter);
+
+// lesson
+router.use('/lessons', lessonRouter);
 
 module.exports = router;
