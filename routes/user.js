@@ -56,7 +56,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-/*
 // 상세정보 조회
 router.get('/:id', async (req, res) => {
   try {
@@ -79,8 +78,7 @@ router.get('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     const params = {
-      reviewId: req.body.reviewId,
-      bookingId: req.body.bookingId,
+      id: req.body.id,
       userid: req.body.userid,
       password: req.body.password,
       name: req.body.name,
@@ -118,6 +116,5 @@ router.delete('/:id', async (req, res) => {
     res.status(500).json({ err: err.toString() });
   }
 });
-*/
 
 module.exports = router;
