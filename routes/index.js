@@ -1,7 +1,7 @@
 const express = require('express');
 const userRouter = require('./user');
 const lessonRouter = require('./lesson');
-const bookingRouter = require('./booking')
+const bookingRouter = require('./booking');
 
 const router = express.Router();
 
@@ -17,6 +17,6 @@ router.use('/users', userRouter);
 router.use('/lessons', lessonRouter);
 
 // booking
-router.use('/bookings', bookingRouter)
+router.use('/bookings', bookingRouter);
 
 module.exports = router;

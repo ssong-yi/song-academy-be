@@ -31,9 +31,9 @@ router.post('/', async (req, res) => {
     logger.info(`(user.reg.result) ${JSON.stringify(result)}`);
 
     // 최종 응답
-    res.status(200).json(result);
+    return res.status(200).json(result);
   } catch (err) {
-    res.status(500).json({ err: err.toString() });
+    return res.status(500).json({ err: err.toString() });
   }
 });
 
@@ -50,9 +50,9 @@ router.get('/', async (req, res) => {
     logger.info(`(user.list.result) ${JSON.stringify(result)}`);
 
     // 최종 응답
-    res.status(200).json(result);
+    return res.status(200).json(result);
   } catch (err) {
-    res.status(500).json({ err: err.toString() });
+    return res.status(500).json({ err: err.toString() });
   }
 });
 
@@ -68,9 +68,9 @@ router.get('/:id', async (req, res) => {
     logger.info(`(user.info.result) ${JSON.stringify(result)}`);
 
     // 최종 응답
-    res.status(200).json(result);
+    return res.status(200).json(result);
   } catch (err) {
-    res.status(500).json({ err: err.toString() });
+    return res.status(500).json({ err: err.toString() });
   }
 });
 
@@ -78,9 +78,8 @@ router.get('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
   try {
     const params = {
-      id: req.body.id,
+      id: req.params.id,
       userid: req.body.userid,
-      password: req.body.password,
       name: req.body.name,
       gender: req.body.gender,
       auth: req.body.auth,
@@ -93,9 +92,9 @@ router.put('/:id', async (req, res) => {
     logger.info(`(user.update.result) ${JSON.stringify(result)}`);
 
     // 최종 응답
-    res.status(200).json(result);
+    return res.status(200).json(result);
   } catch (err) {
-    res.status(500).json({ err: err.toString() });
+    return res.status(500).json({ err: err.toString() });
   }
 });
 
@@ -111,9 +110,9 @@ router.delete('/:id', async (req, res) => {
     logger.info(`(user.delete.result) ${JSON.stringify(result)}`);
 
     // 최종 응답
-    res.status(200).json(result);
+    return res.status(200).json(result);
   } catch (err) {
-    res.status(500).json({ err: err.toString() });
+    return res.status(500).json({ err: err.toString() });
   }
 });
 
