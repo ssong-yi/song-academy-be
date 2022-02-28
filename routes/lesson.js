@@ -8,18 +8,17 @@ const lessonService = require('../service/lessonService');
 router.post('/', async (req, res) => {
   try {
     const params = {
-      name: req.body.name,
+      title: req.body.title,
       price: req.body.price,
-      description: req.body.description,
+      content: req.body.content,
       maxUserCount: req.body.maxUserCount,
       time: req.body.time,
-      images: req.body.images,
     };
     logger.info(`(lesson.reg.params) ${JSON.stringify(params)}`);
 
     // 입력값 null 체크
-    if (!params.name) {
-      const err = new Error('Not allowed null (name)');
+    if (!params.title) {
+      const err = new Error('Not allowed null (title)');
       logger.error(err.toString());
 
       return res.status(500).json({ err: err.toString() });
@@ -40,7 +39,7 @@ router.post('/', async (req, res) => {
 router.get('/', async (req, res) => {
   try {
     const params = {
-      name: req.query.name,
+      title: req.query.title,
     };
     logger.info(`(lesson.list.params) ${JSON.stringify(params)}`);
 
@@ -77,14 +76,21 @@ router.put('/:id', async (req, res) => {
   try {
     const params = {
       id: req.params.id,
-      name: req.body.name,
+      title: req.body.title,
       price: req.body.price,
-      description: req.body.description,
+      content: req.body.content,
       maxUserCount: req.body.maxUserCount,
       time: req.body.time,
-      images: req.body.images,
     };
     logger.info(`(lesson.update.params) ${JSON.stringify(params)}`);
+
+    // 입력값 null 체크
+    if (!params.title) {
+      const err = new Error('Not allowed null (title)');
+      logger.error(err.toString());
+
+      return res.status(500).json({ err: err.toString() });
+    }
 
     const result = await lessonService.edit(params);
     logger.info(`(lesson.update.result) ${JSON.stringify(result)}`);

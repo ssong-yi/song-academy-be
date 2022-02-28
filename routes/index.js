@@ -1,4 +1,5 @@
 const express = require('express');
+const logger = require('../lib/logger');
 const userRouter = require('./user');
 const lessonRouter = require('./lesson');
 const bookingRouter = require('./booking');

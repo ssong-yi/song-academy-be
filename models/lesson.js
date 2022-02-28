@@ -26,4 +26,8 @@ module.exports = class Lesson extends Sequelize.Model {
       paranoid: true, // deletedAt
     });
   }
+
+  static associate(db) {
+    db.Post.belongsTo(db.User, { foreignKey: { name: 'userId', onDelete: 'SET NULL', as: 'User' } });
+  }
 };
