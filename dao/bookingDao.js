@@ -48,6 +48,21 @@ const dao = {
       });
     });
   },
+  // 상태 수정
+  statusUpdate(params) {
+    return new Promise((resolve, reject) => {
+      Booking.update(
+        params,
+        {
+          where: { id: params.id },
+        },
+      ).then(([updated]) => {
+        resolve({ updatedCount: updated });
+      }).catch((err) => {
+        reject(err);
+      });
+    });
+  },
   // 수정
   update(params) {
     return new Promise((resolve, reject) => {

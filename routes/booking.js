@@ -12,7 +12,7 @@ router.post('/', async (req, res) => {
       userId: req.body.userId,
       bookingDate: req.body.bookingDate,
       userCount: req.body.userCount,
-      status: req.body.status,
+      status: 'submit', // 등록시 고정됨(status: submit)
     };
     logger.info(`(booking.reg.params) ${JSON.stringify(params)}`);
 
@@ -72,16 +72,34 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+// 상태 변경
+router.put('/status/:id', async (req, res) => {
+  try {
+    const params = {
+      id: req.params.id,
+      status: req.body.status, // 상태값만 변경함
+    };
+    logger.info(`(booking.statusUpdate.params) ${JSON.stringify(params)}`);
+
+    const result = await bookingService.editStatus(params);
+    logger.info(`(booking.statusUpdate.result) ${JSON.stringify(result)}`);
+
+    // 최종 응답
+    return res.status(200).json(result);
+  } catch (err) {
+    return res.status(500).json({ err: err.toString() });
+  }
+});
+
 // 수정
 router.put('/:id', async (req, res) => {
   try {
     const params = {
-      id: req.body.id,
+      id: req.params.id,
       lessonId: req.body.lessonId,
       userId: req.body.userId,
       bookingDate: req.body.bookingDate,
       userCount: req.body.userCount,
-      status: req.body.status,
     };
     logger.info(`(booking.update.params) ${JSON.stringify(params)}`);
 

@@ -51,6 +51,9 @@ const dao = {
     return new Promise((resolve, reject) => {
       User.findByPk(
         params.id,
+        {
+          attributes: { exclude: ['password'] }, // password 필드 제외
+        },
       ).then((selectedInfo) => {
         resolve(selectedInfo);
       }).catch((err) => {

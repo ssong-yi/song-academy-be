@@ -57,6 +57,31 @@ const service = {
       resolve(result);
     });
   },
+  // status update
+  async editStatus(params) {
+    let result = null;
+
+    if (params.status === 'confirm') {
+      try {
+        // userLessonJoin 로직
+      } catch (err) {
+        return result.status(500).json({ err: err.toString() });
+      }
+    }
+    try {
+      result = await bookingDao.statusUpdate(params);
+      logger.debug(`(bookingService.editStatus) ${JSON.stringify(result)}`);
+    } catch (err) {
+      logger.error(`(bookingService.editStatus) ${err.toString()}`);
+      return new Promise((resolve, reject) => {
+        reject(err);
+      });
+    }
+
+    return new Promise((resolve) => {
+      resolve(result);
+    });
+  },
   // update
   async edit(params) {
     let result = null;

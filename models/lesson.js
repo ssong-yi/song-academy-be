@@ -3,14 +3,14 @@ const Sequelize = require('sequelize');
 module.exports = class Lesson extends Sequelize.Model {
   static init(sequelize) {
     return super.init({
-      name: {
+      title: {
         type: Sequelize.STRING(200),
         allowNull: false,
       },
       price: {
         type: Sequelize.INTEGER,
       },
-      description: {
+      content: {
         type: Sequelize.TEXT,
       },
       maxUserCount: {
@@ -18,9 +18,6 @@ module.exports = class Lesson extends Sequelize.Model {
       },
       time: {
         type: Sequelize.INTEGER,
-      },
-      images: {
-        type: Sequelize.ARRAY(Sequelize.STRING),
       },
     }, {
       sequelize,
