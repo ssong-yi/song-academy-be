@@ -1,5 +1,5 @@
 const { Op } = require('sequelize');
-const { Lesson } = require('../models/index');
+const { Lesson, Booking } = require('../models/index');
 
 const dao = {
   // 등록
@@ -16,10 +16,10 @@ const dao = {
   selectList(params) {
     // where 검색 조건
     const setQuery = {};
-    if (params.name) {
+    if (params.title) {
       setQuery.where = {
         ...setQuery.where,
-        name: { [Op.like]: `%${params.name}%` }, // like검색
+        title: { [Op.like]: `%${params.title}%` }, // like검색
       };
     }
 
@@ -29,6 +29,12 @@ const dao = {
     return new Promise((resolve, reject) => {
       Lesson.findAndCountAll({
         ...setQuery,
+        include: [
+          {
+            model: Booking,
+            attributes: ['id', 'lessonId', 'userId', 'bookingDate', 'userCount', 'status'],
+          },
+        ],
       }).then((selectedList) => {
         resolve(selectedList);
       }).catch((err) => {
@@ -41,6 +47,14 @@ const dao = {
     return new Promise((resolve, reject) => {
       Lesson.findByPk(
         params.id,
+        {
+          include: [
+            {
+              model: Booking,
+              attributes: ['id', 'lessonId', 'userId', 'bookingDate', 'userCount', 'status'],
+            },
+          ],
+        },
       ).then((selectedInfo) => {
         resolve(selectedInfo);
       }).catch((err) => {

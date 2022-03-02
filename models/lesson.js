@@ -28,6 +28,6 @@ module.exports = class Lesson extends Sequelize.Model {
   }
 
   static associate(db) {
-    db.Post.belongsTo(db.User, { foreignKey: { name: 'userId', onDelete: 'SET NULL', as: 'User' } });
+    db.Lesson.hasMany(db.Booking, { foreignKey: { name: 'lessonId', onDelete: 'SET NULL', as: 'Booking' } });
   }
 };

@@ -12,6 +12,9 @@ module.exports = class Booking extends Sequelize.Model {
       bookingDate: {
         type: Sequelize.DATE, // 예약 날짜
       },
+      memo: {
+        type: Sequelize.TEXT, // 예약 정보
+      },
       userCount: {
         type: Sequelize.INTEGER, // 예약 인원
       },
@@ -24,5 +27,10 @@ module.exports = class Booking extends Sequelize.Model {
       timestamps: true, // createAt, updatedAt
       paranoid: true, // deletedAt
     });
+  }
+
+  static associate(db) {
+    db.Booking.belongsTo(db.Lesson, { foreignKey: { name: 'lessonId', onDelete: 'SET NULL', as: 'Lesson' } });
+    db.Booking.belongsTo(db.User, { foreignKey: { name: 'userId', onDelete: 'SET NULL', as: 'User' } });
   }
 };

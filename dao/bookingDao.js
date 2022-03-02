@@ -1,5 +1,5 @@
 const { Op } = require('sequelize');
-const { Booking } = require('../models/index');
+const { Booking, Lesson, User } = require('../models/index');
 
 const dao = {
   // 등록
@@ -29,6 +29,18 @@ const dao = {
     return new Promise((resolve, reject) => {
       Booking.findAndCountAll({
         ...setQuery,
+        include: [
+          {
+            model: Lesson,
+            as: 'Lesson',
+            attributes: ['id', 'title', 'time'],
+          },
+          {
+            model: User,
+            as: 'User',
+            attributes: ['id', 'userid', 'name'],
+          },
+        ],
       }).then((selectedList) => {
         resolve(selectedList);
       }).catch((err) => {
@@ -41,6 +53,20 @@ const dao = {
     return new Promise((resolve, reject) => {
       Booking.findByPk(
         params.id,
+        {
+          include: [
+            {
+              model: Lesson,
+              as: 'Lesson',
+              attributes: ['id', 'title', 'time'],
+            },
+            {
+              model: User,
+              as: 'User',
+              attributes: ['id', 'userid', 'name'],
+            },
+          ],
+        },
       ).then((selectedInfo) => {
         resolve(selectedInfo);
       }).catch((err) => {

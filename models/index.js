@@ -3,7 +3,6 @@ const User = require('./user');
 const Lesson = require('./lesson');
 const UserLesson = require('./userLesson');
 const Booking = require('./booking');
-const { post } = require('../routes/booking');
 
 const db = {};
 
@@ -22,6 +21,7 @@ UserLesson.init(sequelize);
 Booking.init(sequelize);
 
 // association(관계 생성)
+Booking.associate(db);
 Lesson.associate(db);
 
 module.exports = db;

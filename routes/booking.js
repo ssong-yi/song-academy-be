@@ -11,6 +11,7 @@ router.post('/', async (req, res) => {
       lessonId: req.body.lessonId,
       userId: req.body.userId,
       bookingDate: req.body.bookingDate,
+      memo: req.body.memo,
       userCount: req.body.userCount,
       status: 'submit', // 등록시 고정됨(status: submit)
     };
