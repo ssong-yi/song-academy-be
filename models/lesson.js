@@ -28,6 +28,12 @@ module.exports = class Lesson extends Sequelize.Model {
   }
 
   static associate(db) {
-    db.Lesson.hasMany(db.Booking, { foreignKey: { name: 'lessonId', onDelete: 'SET NULL', as: 'Booking' } });
+    db.Lesson.hasMany(db.Booking, { foreignKey: { name: 'lessonId' }, onDelete: 'SET NULL', as: 'Bookings' });
+    db.Lesson.belongsToMany(db.User, {
+      through: db.UserLesson,
+      foreignKey: { name: 'lessonId' },
+      onDelete: 'CASCADE',
+      as: 'ConfirmUsers',
+    });
   }
 };

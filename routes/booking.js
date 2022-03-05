@@ -97,8 +97,8 @@ router.put('/:id', async (req, res) => {
   try {
     const params = {
       id: req.params.id,
-      lessonId: req.body.lessonId,
-      userId: req.body.userId,
+      // lessonId: req.body.lessonId,
+      // userId: req.body.userId,
       bookingDate: req.body.bookingDate,
       userCount: req.body.userCount,
     };

@@ -1,5 +1,5 @@
 const { Op } = require('sequelize');
-const { Lesson, Booking } = require('../models/index');
+const { Lesson, Booking, User } = require('../models/index');
 
 const dao = {
   // 등록
@@ -31,8 +31,24 @@ const dao = {
         ...setQuery,
         include: [
           {
+            model: User,
+            as: 'ConfirmUsers',
+            attributes: ['id', 'userid', 'name'],
+            through: {
+              attributes: [],
+            },
+          },
+          {
             model: Booking,
-            attributes: ['id', 'lessonId', 'userId', 'bookingDate', 'userCount', 'status'],
+            as: 'Bookings',
+            attributes: ['id', 'lessonId', 'userId', 'bookingDate', 'userCount', 'status', 'createdAt'],
+            include: [
+              {
+                model: User,
+                as: 'User',
+                attributes: ['id', 'userid', 'name'],
+              },
+            ],
           },
         ],
       }).then((selectedList) => {
@@ -50,8 +66,24 @@ const dao = {
         {
           include: [
             {
+              model: User,
+              as: 'ConfirmUsers',
+              attributes: ['id', 'userid', 'name'],
+              through: {
+                attributes: [],
+              },
+            },
+            {
               model: Booking,
-              attributes: ['id', 'lessonId', 'userId', 'bookingDate', 'userCount', 'status'],
+              as: 'Bookings',
+              attributes: ['id', 'lessonId', 'userId', 'bookingDate', 'userCount', 'status', 'createdAt'],
+              include: [
+                {
+                  model: User,
+                  as: 'User',
+                  attributes: ['id', 'userid', 'name'],
+                },
+              ],
             },
           ],
         },

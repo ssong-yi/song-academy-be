@@ -78,7 +78,9 @@ const dao = {
   statusUpdate(params) {
     return new Promise((resolve, reject) => {
       Booking.update(
-        params,
+        {
+          status: params.status,
+        },
         {
           where: { id: params.id },
         },

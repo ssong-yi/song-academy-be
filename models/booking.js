@@ -30,7 +30,7 @@ module.exports = class Booking extends Sequelize.Model {
   }
 
   static associate(db) {
-    db.Booking.belongsTo(db.Lesson, { foreignKey: { name: 'lessonId', onDelete: 'SET NULL', as: 'Lesson' } });
-    db.Booking.belongsTo(db.User, { foreignKey: { name: 'userId', onDelete: 'SET NULL', as: 'User' } });
+    db.Booking.belongsTo(db.Lesson, { foreignKey: { name: 'lessonId' }, onDelete: 'SET NULL', as: 'Lesson' });
+    db.Booking.belongsTo(db.User, { foreignKey: { name: 'userId' }, onDelete: 'SET NULL', as: 'User' });
   }
 };
